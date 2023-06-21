@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('carte_etudiants', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->unsignedBigInteger('etudiant');
             $table->foreign('etudiant')->references('id')->on('etudiants')->onDelete('cascade');
-            $table->unsignedBigInteger('falculte');
+            $table->unsignedBigInteger('faculte');
             $table->foreign('faculte')->references('id')->on('facultes')->onDelete('cascade');
             $table->unsignedBigInteger('option');
             $table->foreign('option')->references('id')->on('options')->onDelete('cascade');

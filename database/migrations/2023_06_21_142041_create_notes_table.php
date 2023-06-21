@@ -14,6 +14,12 @@ return new class extends Migration
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->integer('valeur');
+            $table->unsignedBigInteger('etudiant');
+            $table->foreign('etudiant')->references('id')->on('etudiants')->onDelete('cascade');
+            $table->unsignedBigInteger('matiere');
+            $table->foreign('matiere')->references('id')->on('matieres')->onDelete('cascade');
+
         });
     }
 

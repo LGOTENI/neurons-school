@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('etudiants', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
@@ -18,12 +19,15 @@ return new class extends Migration
             $table->string('date_naissance');
             $table->string('nationalite');
             $table->string('lieu_naissance');
+            $table->string('matricule');
             $table->string('rang')->default(0);
             $table->longText('adresse')->nullable()->default(null);
             $table->string('email')->nullable();
             $table->string('telephone');
-            $table->unsignedBigInteger('falcute');
+            $table->unsignedBigInteger('faculte');
             $table->foreign('faculte')->references('id')->on('facultes')->onDelete('cascade');
+            $table->unsignedBigInteger('inscription')->nullable()->default(null);
+            $table->foreign('inscription')->references('id')->on('pre_inscriptions')->onDelete('cascade');
         });
     }
 
