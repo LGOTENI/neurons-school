@@ -7,12 +7,11 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run tgit inithe migrations.
+     * Run the migrations.
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
-        Schema::create('falcutes', function (Blueprint $table) {
+        Schema::create('facultes', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->string('nom');
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('falcutes');
+        Schema::dropIfExists('facultes');
     }
 };
