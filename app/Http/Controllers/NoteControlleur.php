@@ -8,6 +8,6 @@ use App\Models\Note;
 class NoteControlleur extends Controller
 {
     protected function index() {
-        
+        return view("pages.notes");
     }
 }

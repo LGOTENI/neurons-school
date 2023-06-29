@@ -8,6 +8,6 @@ use App\Models\Matiere;
 class MatiereController extends Controller
 {
     protected function index() {
-        
+        return view("pages.matieres");
     }
 }
