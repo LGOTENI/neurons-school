@@ -373,7 +373,7 @@
                             </div>
                         </div>
                         <div class="mt-3 text-end">
-                            <a href="inscription.html" class="btn btn-danger">Ajouter Etudiants</a>
+                            <a href="{{ route("etudiant.store") }}" class="btn btn-danger">Ajouter Etudiants</a>
                         </div>
                     </div>
                 </div>

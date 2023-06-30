@@ -16,18 +16,24 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('nom');
+            $table->string("photo")->nullable();
             $table->string('date_naissance');
             $table->string('nationalite');
             $table->string('lieu_naissance');
             $table->string('matricule');
-            $table->string('rang')->default(0);
+            $table->string('password');
+            $table->string('documents')->nullable();
             $table->longText('adresse')->nullable()->default(null);
             $table->string('email')->nullable();
             $table->string('telephone');
-            $table->unsignedBigInteger('faculte');
+            $table->unsignedBigInteger('faculte')->nullable();
             $table->foreign('faculte')->references('id')->on('facultes')->onDelete('cascade');
             $table->unsignedBigInteger('inscription')->nullable()->default(null);
             $table->foreign('inscription')->references('id')->on('pre_inscriptions')->onDelete('cascade');
+            $table->unsignedBigInteger('option')->nullable();
+            $table->foreign('option')->references('id')->on('options')->onDelete('cascade');
+            $table->unsignedBigInteger('niveau')->nullable();
+            $table->foreign('niveau')->references('id')->on('niveaux')->onDelete('cascade');
         });
     }
 

@@ -15,6 +15,11 @@
             </div>
 
         </div>
+        @if (session('success'))
+            <div class="bg-success p-2 text-white">
+                {{ session('success') }}
+            </div>
+        @endif
         <!-- end page title -->
 
         <!-- ============================================================== -->
@@ -30,11 +35,12 @@
                         </div>
                     </div><!-- end card header -->
                     <div class="card-body">
-                        <form action="">
+                        <form method="post">
+                            @csrf
                             <label for="basiInput">Nom</label>
-                            <input type="text" class="form-control mb-2" id="basiInput">
+                            <input type="text" class="form-control mb-2" id="basiInput" name="nom">
                             <label for="basiInput">Description</label>
-                            <textarea class="form-control mb-2" id="" cols="30" rows="10"></textarea>
+                            <textarea class="form-control mb-2" id="" cols="30" rows="10" name="description"></textarea>
                             <button class="btn btn-primary mb-2" type="submit">Ajouter</button>
                         </form>
                     </div>
@@ -55,12 +61,6 @@
                                     <table role="grid" class="gridjs-table" style="height: auto;">
                                         <thead class="gridjs-thead">
                                             <tr class="gridjs-tr">
-                                                <th data-column-id="id" class="gridjs-th gridjs-th-sort" tabindex="0"
-                                                    style="width: 80px;">
-                                                    <div class="gridjs-th-content">ID</div><button tabindex="-1"
-                                                        aria-label="Sort column ascending" title="Sort column ascending"
-                                                        class="gridjs-sort gridjs-sort-neutral"></button>
-                                                </th>
                                                 <th data-column-id="name" class="gridjs-th gridjs-th-sort" tabindex="0"
                                                     style="width: 150px;">
                                                     <div class="gridjs-th-content">Nom</div><button tabindex="-1"
@@ -83,112 +83,36 @@
                                             </tr>
                                         </thead>
                                         <tbody class="gridjs-tbody">
-                                            <tr class="gridjs-tr">
-                                                <td data-column-id="id" class="gridjs-td"><span><span
-                                                            class="fw-semibold">01</span></span></td>
-                                                <td data-column-id="name" class="gridjs-td">Jonathan</td>
-                                                <td data-column-id="email" class="gridjs-td"><span><a
-                                                            href="">jonathan@example.com</a></span></td>
-                                                <td data-column-id="position" class="gridjs-td">
-                                                    <a href="#popup3" class=" m-1 btn btn-primary w-100"> <i
-                                                            class="mdi mdi-archive-edit"></i></a>
-
-
-                                                </td>
-                                                <<td data-column-id="position" class="gridjs-td">
-
-                                                    <a href="#popup2" class=" m-1 btn btn-danger w-100"><i
-                                                            class="mdi mdi-delete"></i></a>
+                                            @foreach ($options as $option)
+                                                <tr class="gridjs-tr">
+                                                    <td data-column-id="name" class="gridjs-td">
+                                                        {{ $option->nom }}
                                                     </td>
-
-
-                                            </tr>
-                                            <tr class="gridjs-tr">
-                                                <td data-column-id="id" class="gridjs-td"><span><span
-                                                            class="fw-semibold">02</span></span></td>
-                                                <td data-column-id="name" class="gridjs-td">Harold</td>
-                                                <td data-column-id="email" class="gridjs-td"><span><a
-                                                            href="">harold@example.com</a></span></td>
-                                                <td data-column-id="position" class="gridjs-td">
-                                                    <a href="#popup3" class=" m-1 btn btn-primary w-100"> <i
-                                                            class="mdi mdi-archive-edit"></i></a>
-
-
-                                                </td>
-                                                <td data-column-id="position" class="gridjs-td">
-
-                                                    <a href="#popup2" class=" m-1 btn btn-danger w-100"><i
-                                                            class="mdi mdi-delete"></i></a>
-                                                </td>
-
-
-
-                                            </tr>
-                                            <tr class="gridjs-tr">
-                                                <td data-column-id="id" class="gridjs-td"><span><span
-                                                            class="fw-semibold">03</span></span></td>
-                                                <td data-column-id="name" class="gridjs-td">Shannon</td>
-                                                <td data-column-id="email" class="gridjs-td"><span><a
-                                                            href="">shannon@example.com</a></span></td>
-                                                <td data-column-id="position" class="gridjs-td">
-                                                    <a href="#popup3" class=" m-1 btn btn-primary w-100"> <i
-                                                            class="mdi mdi-archive-edit"></i></a>
-
-
-                                                </td>
-                                                <td data-column-id="position" class="gridjs-td">
-
-                                                    <a href="#popup2" class=" m-1 btn btn-danger w-100"><i
-                                                            class="mdi mdi-delete"></i></a>
-                                                </td>
-
-
-
-                                            </tr>
-                                            <tr class="gridjs-tr">
-                                                <td data-column-id="id" class="gridjs-td"><span><span
-                                                            class="fw-semibold">04</span></span></td>
-                                                <td data-column-id="name" class="gridjs-td">Robert</td>
-                                                <td data-column-id="email" class="gridjs-td"><span><a
-                                                            href="">robert@example.com</a></span></td>
-                                                <td data-column-id="position" class="gridjs-td">
-                                                    <a href="#popup3" class=" m-1 btn btn-primary w-100"> <i
-                                                            class="mdi mdi-archive-edit"></i></a>
-
-
-                                                </td>
-                                                <td data-column-id="position" class="gridjs-td">
-
-                                                    <a href="#popup2" class=" m-1 btn btn-danger w-100"><i
-                                                            class="mdi mdi-delete"></i></a>
-                                                </td>
-
-
-                                            </tr>
-                                            <tr class="gridjs-tr">
-                                                <td data-column-id="id" class="gridjs-td"><span><span
-                                                            class="fw-semibold">05</span></span></td>
-                                                <td data-column-id="name" class="gridjs-td">Noel</td>
-                                                <td data-column-id="email" class="gridjs-td"><span><a
-                                                            href="">noel@example.com</a></span></td>
-                                                <td data-column-id="position" class="gridjs-td">
-                                                    <a href="#popup3" class=" m-1 btn btn-primary w-100"> <i
-                                                            class="mdi mdi-archive-edit"></i></a>
-
-
-                                                </td>
-                                                <td data-column-id="position" class="gridjs-td">
-
-                                                    <a href="#popup2" class=" m-1 btn btn-danger w-100"><i
-                                                            class="mdi mdi-delete"></i></a>
-                                                </td>
+                                                    <td data-column-id="email" class="gridjs-td">
+                                                        <span>
+                                                            <a href="">{{ $option->description }}
+                                                            </a>
+                                                        </span>
+                                                    </td>
+                                                    <td data-column-id="position" class="gridjs-td">
+                                                        <a href="#popup3" class=" m-1 btn btn-primary w-100">
+                                                            <i class="mdi mdi-archive-edit"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td data-column-id="position" class="gridjs-td">
+                                                        <a href="#popup2" class=" m-1 btn btn-danger w-100">
+                                                            <i class="mdi mdi-delete"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
 
 
                                         </tbody>
                                     </table>
                                     <!--
-                                                    debut popup
-                                                -->
+                                                                            debut popup
+                                                                        -->
                                     <div id="popup2" class="overlay">
                                         <div class="card popup">
                                             <h4 class="text-center"> <i class="fa fa-exclamation-triangle"
@@ -247,8 +171,8 @@
                                         </div>
                                     </div>
                                     <!--
-                                                    Fin popup
-                                                -->
+                                                                            Fin popup
+                                                                        -->
                                 </div>
 
 

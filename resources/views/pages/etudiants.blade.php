@@ -18,6 +18,11 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
+                    @if (session('success'))
+                        <div class="bg-success p-2 text-white">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                     <div class="card-header align-items-center d-flex">
                         <div class="flex-shrink-0">
                             <h5>Rechercher</h5>
@@ -142,96 +147,13 @@
                                                     <td data-column-id="experience" class="gridjs-td">06 600
                                                         22 33
                                                     </td>
-                                                    <td data-column-id="jobType" class="gridjs-td"><button
-                                                            class="btn btn-primary w-100">Plus...</button>
+                                                    <td data-column-id="jobType" class="gridjs-td">
+                                                        <button
+                                                            class="btn btn-primary w-100">
+                                                            <a href="{{ route("etudiant.show") }}">Plus...</a>
+                                                        </button>
                                                     </td>
                                                 </tr>
-                                                <tr class="gridjs-tr">
-                                                    <td data-column-id="position" class="gridjs-td">MO45TUY
-                                                    </td>
-                                                    <td data-column-id="companyName" class="gridjs-td">
-                                                        Christ Ngakosso</td>
-                                                    <td data-column-id="location" class="gridjs-td">L2
-                                                    </td>
-                                                    <td data-column-id="salary" class="gridjs-td">Genie
-                                                        Informatique (GI)
-                                                    </td>
-                                                    <td data-column-id="experience" class="gridjs-td">06 600
-                                                        22 33
-                                                    </td>
-                                                    <td data-column-id="jobType" class="gridjs-td"><button
-                                                            class="btn btn-primary w-100">Plus...</button>
-                                                    </td>
-                                                </tr>
-                                                <tr class="gridjs-tr">
-                                                    <td data-column-id="position" class="gridjs-td">MO45TUY
-                                                    </td>
-                                                    <td data-column-id="companyName" class="gridjs-td">
-                                                        Christ Ngakosso</td>
-                                                    <td data-column-id="location" class="gridjs-td">L2
-                                                    </td>
-                                                    <td data-column-id="salary" class="gridjs-td">Genie
-                                                        Informatique (GI)
-                                                    </td>
-                                                    <td data-column-id="experience" class="gridjs-td">06 600
-                                                        22 33
-                                                    </td>
-                                                    <td data-column-id="jobType" class="gridjs-td"><button
-                                                            class="btn btn-primary w-100">Plus...</button>
-                                                    </td>
-                                                </tr>
-                                                <tr class="gridjs-tr">
-                                                    <td data-column-id="position" class="gridjs-td">MO45TUY
-                                                    </td>
-                                                    <td data-column-id="companyName" class="gridjs-td">
-                                                        Christ Ngakosso</td>
-                                                    <td data-column-id="location" class="gridjs-td">L2
-                                                    </td>
-                                                    <td data-column-id="salary" class="gridjs-td">Genie
-                                                        Informatique (GI)
-                                                    </td>
-                                                    <td data-column-id="experience" class="gridjs-td">06 600
-                                                        22 33
-                                                    </td>
-                                                    <td data-column-id="jobType" class="gridjs-td"><button
-                                                            class="btn btn-primary w-100">Plus...</button>
-                                                    </td>
-                                                </tr>
-                                                <tr class="gridjs-tr">
-                                                    <td data-column-id="position" class="gridjs-td">MO45TUY
-                                                    </td>
-                                                    <td data-column-id="companyName" class="gridjs-td">
-                                                        Christ Ngakosso</td>
-                                                    <td data-column-id="location" class="gridjs-td">L2
-                                                    </td>
-                                                    <td data-column-id="salary" class="gridjs-td">Genie
-                                                        Informatique (GI)
-                                                    </td>
-                                                    <td data-column-id="experience" class="gridjs-td">06 600
-                                                        22 33
-                                                    </td>
-                                                    <td data-column-id="jobType" class="gridjs-td"><button
-                                                            class="btn btn-primary w-100">Plus...</button>
-                                                    </td>
-                                                </tr>
-                                                <tr class="gridjs-tr">
-                                                    <td data-column-id="position" class="gridjs-td">MO45TUY
-                                                    </td>
-                                                    <td data-column-id="companyName" class="gridjs-td">
-                                                        Christ Ngakosso</td>
-                                                    <td data-column-id="location" class="gridjs-td">L2
-                                                    </td>
-                                                    <td data-column-id="salary" class="gridjs-td">Genie
-                                                        Informatique (GI)
-                                                    </td>
-                                                    <td data-column-id="experience" class="gridjs-td">06 600
-                                                        22 33
-                                                    </td>
-                                                    <td data-column-id="jobType" class="gridjs-td"><button
-                                                            class="btn btn-primary w-100">Plus...</button>
-                                                    </td>
-                                                </tr>
-
                                             </tbody>
                                         </table>
                                     </div>

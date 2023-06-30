@@ -15,46 +15,46 @@
             </div>
 
         </div>
+        @if (session('success'))
+            <div class="bg-success p-2 text-white">
+                {{ session('success') }}
+            </div>
+        @endif
         <!-- end page title -->
 
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
+
         <div class="row">
-
             <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-header align-items-center d-flex">
-                        <div class="flex-shrink-0">
-                            <h5>Ajouter une Matiere</h5>
-                        </div>
-                    </div><!-- end card header -->
-                    <div class="card-body">
-                        <form action="">
-                            <label for="basiInput">Nom</label>
-                            <input type="text" class="form-control mb-2" id="basiInput">
-
-                            <label for="selectInput">Option</label>
-                            <select class="form-select mb-2" id="selectInput">
-                                <option value="1">Genie informatique</option>
-                                <option value="2">Lanque et Affaire</option>
-                                <option value="3">Maintenance Industruelle</option>
-                            </select>
-                            <div>
-                                <label for="selectInput">Coefficient</label>
-                                <select class="form-select mb-2" id="selectInput">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
+                <form action="" method="post">
+                    <div class="card">
+                        <div class="card-header align-items-center d-flex">
+                            <div class="flex-shrink-0">
+                                <h5>Ajouter une Matiere</h5>
                             </div>
+                        </div><!-- end card header -->
+                        <div class="card-body">
+                            <form action="">
+                                @csrf
+                                <label for="basiInput">Nom</label>
+                                <input type="text" class="form-control mb-2" id="basiInput" name="nom">
 
-                            <label for="basiInput">Description</label>
-                            <textarea class="form-control mb-2" id="" cols="30" rows="10"></textarea>
-                            <button class="btn btn-primary mb-2" type="submit">Ajouter</button>
-                        </form>
+                                <label for="selectInput">Option</label>
+                                <select class="form-select mb-2" id="selectInput" name="option">
+                                    @foreach ($options as $option)
+                                        <option value="{{ $option->id }}">{{ $option->nom }}</option>
+                                    @endforeach
+                                </select>
+                                <label for="basiInput">Description</label>
+                                <textarea class="form-control mb-2" id="" cols="30" rows="10" name="description"></textarea>
+                                <button class="btn btn-primary mb-2" type="submit">Ajouter</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
+                </form>
+
             </div> <!-- end col -->
 
 
@@ -107,36 +107,42 @@
                                                         class="gridjs-sort gridjs-sort-neutral"></button>
                                                 </th>
                                             </tr>
+
                                         </thead>
                                         <tbody class="gridjs-tbody">
-                                            <tr class="gridjs-tr">
-                                                <td data-column-id="name" class="gridjs-td">Jonathan</td>
+                                            @foreach ($matieres as $matiere)
+                                                <tr class="gridjs-tr">
+                                                    <td data-column-id="name" class="gridjs-td">{{ $matiere->nom }}</td>
 
-                                                <td data-column-id="text" class="gridjs-td"><span><a href="">Genie
-                                                            Informatique</a></span></td>
-                                                <td data-column-id="name" class="gridjs-td">2</td>
-                                                <td data-column-id="email" class="gridjs-td"><span><a
-                                                            href="">Lorem ipsum dolor sit amet,</a></span></td>
-                                                <td data-column-id="position" class="gridjs-td">
-                                                    <a href="#popup3" class=" m-1 btn btn-primary w-100"> <i
-                                                            class="mdi mdi-archive-edit"></i></a>
-
-
-                                                </td>
-                                                <<td data-column-id="position" class="gridjs-td">
-
-                                                    <a href="#popup2" class=" m-1 btn btn-danger w-100"><i
-                                                            class="mdi mdi-delete"></i></a>
+                                                    <td data-column-id="text" class="gridjs-td">
+                                                        <span>
+                                                            <a href="">{{ $matiere->option }}</a>
+                                                        </span>
                                                     </td>
+                                                    <td data-column-id="name" class="gridjs-td">2</td>
+                                                    <td data-column-id="email" class="gridjs-td">
+                                                        <span>
+                                                            <a href="">{{ $matiere->description }}</a>
+                                                        </span>
+                                                    </td>
+                                                    <td data-column-id="position" class="gridjs-td">
+                                                        <a href="#popup3" class=" m-1 btn btn-primary w-100"> <i
+                                                                class="mdi mdi-archive-edit"></i></a>
+                                                    </td>
+                                                    <<td data-column-id="position" class="gridjs-td">
 
+                                                        <a href="#popup2" class=" m-1 btn btn-danger w-100"><i
+                                                                class="mdi mdi-delete"></i></a>
+                                                        </td>
+                                                </tr>
+                                            @endforeach
 
-                                            </tr>
 
                                         </tbody>
                                     </table>
                                     <!--
-                                            debut popup
-                                        -->
+                                                                debut popup
+                                                            -->
                                     <div id="popup2" class="overlay">
                                         <div class="card popup">
                                             <h4 class="text-center"> <i class="fa fa-exclamation-triangle"
@@ -211,8 +217,8 @@
                                         </div>
                                     </div>
                                     <!--
-                                            Fin popup
-                                        -->
+                                                                Fin popup
+                                                            -->
                                 </div>
 
 
