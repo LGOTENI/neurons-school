@@ -12,6 +12,16 @@ class Option extends Model
     protected $fillable= [
         "nom",
         "description",
-        "faculte"
+        "faculte_id"
     ];
+
+    public function etudiants()
+    {
+        return $this->hasMany(Etudiant::class);
+    }
+
+    public function matieres()
+    {
+        return $this->hasMany(Matiere::class);
+    }
 }

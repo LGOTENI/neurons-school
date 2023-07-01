@@ -11,8 +11,9 @@ class MatiereController extends Controller
 {
     protected function index() {
         $options= Option::where("id", "=", 1)->get();
-        $matieres= Matiere::where('faculte', '=', 1)->get();
-
+        // $option= Matiere::find(1);
+        $matieres= Matiere::where('faculte_id', '=', 1)->get();
+        // dd($matieres->option);
         return view("pages.matieres", compact('options', 'matieres'));
     }
 
@@ -24,8 +25,8 @@ class MatiereController extends Controller
             [
                 'nom' => $request->nom,
                 'description' => $request->description,
-                "faculte" => $faculteId->id,
-                "option" => $request->option
+                "faculte_id" => $faculteId->id,
+                "option_id" => $request->option
             ]
         );
 

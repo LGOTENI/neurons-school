@@ -34,7 +34,8 @@
                                             <h5 class="text-primary">Ajouter un Etudiant</h5>
                                         </div>
                                         <div class="profile-user position-relative d-inline-block mx-auto  mb-4">
-                                            <img id="image-preview" src="{{ asset("assets/images/users/user-dummy-img.jpg") }}"
+                                            <img id="image-preview"
+                                                src="{{ asset('assets/images/users/user-dummy-img.jpg') }}"
                                                 class="rounded-circle avatar-xl img-thumbnail user-profile-image"
                                                 alt="user-profile-image">
                                             <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
@@ -120,18 +121,18 @@
                                         <label for="userphone" class="form-label">Niveau <span
                                                 class="text-danger">*</span></label>
                                         <select class="form-select" aria-label="Default select example" name="niveau">
-                                            <option value="1">Licence 1</option>
-                                            <option value="2">Licence 2</option>
-                                            <option value="3">Licence 3</option>
+                                            @foreach ($niveaux as $niveau)
+                                                <option value="{{ $niveau->id }}">{{ $niveau->nom }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="userphone" class="form-label">Filiere <span
                                                 class="text-danger">*</span></label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            @foreach ($options as $option )
-                                            <option value="{{ $option->id }}">{{ $option->nom }}</option>
+                                        <select class="form-select" aria-label="Default select example" name="option">
+                                            @foreach ($options as $option)
+                                                <option value="{{ $option->id }}">{{ $option->nom }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -139,58 +140,14 @@
 
                                         <div>
                                             <label for="formFileMultiple" class="form-label">Documents</label>
-                                            <input class="form-control" type="file" id="formFileMultiple" multiple name="documents">
+                                            <input class="form-control" type="file" id="formFileMultiple" multiple
+                                                name="documents">
                                         </div>
 
                                         <div class="invalid-feedback">
                                             Please enter document
                                         </div>
                                     </div>
-
-                                    <div class="mb-3">
-                                        <label for="userphone" class="form-label">Mot de Passa generer <span
-                                                class="text-danger">*</span></label>
-                                        <div class="input-group">
-                                            <input id="psw-gen" type="text" class="form-control"
-                                                placeholder="psw-gen" value="">
-                                            <buttton class="input-group-text btn btn-success" onclick="pass(event)">
-                                                Valider
-                                            </buttton>
-                                        </div>
-                                        <div class="invalid-feedback">
-                                            Please enter phone
-                                        </div>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label class="form-label" for="password-input">Password</label>
-                                        <div class="position-relative auth-pass-inputgroup">
-                                            <input type="password" class="form-control pe-5 password-input"
-                                                onpaste="return false" placeholder="Enter password" id="password-input"
-                                                aria-describedby="passwordInput"
-                                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required="">
-                                            <button
-                                                class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
-                                                type="button" id="password-addon"><i
-                                                    class="ri-eye-fill align-middle"></i></button>
-                                            <div class="invalid-feedback">
-                                                Please enter password
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div id="password-contain" class="p-3 bg-light mb-2 rounded">
-                                        <h5 class="fs-13">Password must contain:</h5>
-                                        <p id="pass-length" class="invalid fs-12 mb-2">Minimum <b>8
-                                                characters</b></p>
-                                        <p id="pass-lower" class="invalid fs-12 mb-2">At <b>lowercase</b> letter
-                                            (a-z)</p>
-                                        <p id="pass-upper" class="invalid fs-12 mb-2">At least <b>uppercase</b>
-                                            letter (A-Z)</p>
-                                        <p id="pass-number" class="invalid fs-12 mb-0">A least <b>number</b>
-                                            (0-9)</p>
-                                    </div>
-
                                     <div class="mt-4">
                                         <button class="btn btn-success w-100" type="submit">Inscrire</button>
                                     </div>

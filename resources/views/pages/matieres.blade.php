@@ -116,7 +116,8 @@
 
                                                     <td data-column-id="text" class="gridjs-td">
                                                         <span>
-                                                            <a href="">{{ $matiere->option }}</a>
+                                                            {{-- @dump($matiere->option->nom ) --}}
+                                                            <a href="">{{ $matiere->option->nom }}</a>
                                                         </span>
                                                     </td>
                                                     <td data-column-id="name" class="gridjs-td">2</td>

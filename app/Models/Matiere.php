@@ -11,7 +11,13 @@ class Matiere extends Model
     protected $fillable= [
         'nom',
         'description',
-        'faculte',
-        'option',
+        'faculte_id',
+        'option_id',
     ];
+
+    public function option()
+    {
+        return $this->belongsTo(Option::class);
+    }
+
 }

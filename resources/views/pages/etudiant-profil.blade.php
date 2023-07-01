@@ -11,19 +11,20 @@
             <div class="row g-4">
                 <div class="col-auto">
                     <div class="avatar-lg">
-                        <img src="assets/images/users/avatar-1.jpg" alt="user-img" class="img-thumbnail rounded-circle" />
+                        <img src="/storage/{{ $etudiant->photo }}" alt="user-img" class="img-thumbnail rounded-circle" />
                     </div>
                 </div>
                 <!--end col-->
                 <div class="col">
                     <div class="p-2">
-                        <h3 class="text-white mb-1">Christ Ngakosso</h3>
+                        <h3 class="text-white mb-1">{{ $etudiant->nom }}</h3>
                         <p class="text-white-75">Etudiant(e) Genie Informatique</p>
                         <div class="hstack text-white-50 gap-1">
-                            <div class="me-2"><i
-                                    class="ri-map-pin-user-line me-1 text-white-75 fs-16 align-middle"></i>Brazzaville</div>
-                            <div>
-                                <i class="ri-building-line me-1 text-white-75 fs-16 align-middle"></i>Talangai
+                            <div class="me-2 text-danger">
+                                <i class="ri-user-line me-1 text-white-75 fs-16 align-middle"></i>{{ $etudiant->matricule }}
+                            </div>
+                            <div class="me-2 text-danger">
+                                <i class="ri-key-line me-1 text-white-75 fs-16 align-middle"></i>{{ $etudiant->password }}
                             </div>
                         </div>
                     </div>
@@ -65,6 +66,10 @@
                             <a href="pages-profile-settings.html" class="btn btn-success"><i
                                     class="ri-edit-box-line align-bottom"></i> Edit Profile</a>
                         </div>
+                        <div class="flex-shrink-0 mx-2">
+                            <a href="pages-profile-settings.html" class="btn btn-warning"><i
+                                    class="ri-account-box-line align-bottom"></i> Activer compte</a>
+                        </div>
                     </div>
                     <!-- Tab panes -->
                     <div class="tab-content pt-4 text-muted">
@@ -80,32 +85,32 @@
                                                     <tbody>
                                                         <tr>
                                                             <th class="ps-0" scope="row">Nom complet:</th>
-                                                            <td class="text-muted">Anna Adame</td>
+                                                            <td class="text-muted">{{ $etudiant->nom }}</td>
                                                         </tr>
                                                         <tr>
                                                             <th class="ps-0" scope="row">Mobile :</th>
-                                                            <td class="text-muted">+(242) 987 6543</td>
+                                                            <td class="text-muted">{{ $etudiant->telephone }}</td>
                                                         </tr>
                                                         <tr>
                                                             <th class="ps-0" scope="row">E-mail :</th>
-                                                            <td class="text-muted">daveadame@velzon.com</td>
+                                                            <td class="text-muted">{{ $etudiant->email }}</td>
                                                         </tr>
                                                         <tr>
                                                             <th class="ps-0" scope="row">Location :</th>
-                                                            <td class="text-muted">Brazzaville, Talangai
+                                                            <td class="text-muted">{{ $etudiant->adresse }}
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <th class="ps-0" scope="row">date de naissance</th>
-                                                            <td class="text-muted">24 Nov 2021</td>
+                                                            <td class="text-muted">{{ $etudiant->date_naissance }}</td>
                                                         </tr>
                                                         <tr>
                                                             <th class="ps-0" scope="row">Niveau</th>
-                                                            <td class="text-muted">Licence 1</td>
+                                                            <td class="text-muted">{{ $etudiant->niveau->nom }}</td>
                                                         </tr>
                                                         <tr>
                                                             <th class="ps-0" scope="row">Option</th>
-                                                            <td class="text-muted">Genie Informatique</td>
+                                                            <td class="text-muted">{{ $etudiant->option->nom }}</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -1134,8 +1139,10 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="ms-3 flex-grow-1">
-                                                                        <h6 class="fs-15 mb-0"><a
-                                                                                href="javascript:void(0)">Artboard-documents.zip</a>
+                                                                        <h6 class="fs-15 mb-0">
+                                                                            <div class="avatar-sm">
+                                                                                <img src="/storage/{{ $etudiant->documents }}" alt="Doc" class="img-thumbnail" />
+                                                                            </div>
                                                                         </h6>
                                                                     </div>
                                                                 </div>
@@ -1165,190 +1172,6 @@
                                                                         <li><a class="dropdown-item"
                                                                                 href="javascript:void(0);"><i
                                                                                     class="ri-delete-bin-5-line me-2 align-middle text-muted"></i>Delete</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="avatar-sm">
-                                                                        <div
-                                                                            class="avatar-title bg-soft-danger text-danger rounded fs-20">
-                                                                            <i class="ri-file-pdf-fill"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="ms-3 flex-grow-1">
-                                                                        <h6 class="fs-15 mb-0"><a
-                                                                                href="javascript:void(0);">Bank Management
-                                                                                System</a></h6>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>PDF File</td>
-                                                            <td>8.89 MB</td>
-                                                            <td>24 Nov 2021</td>
-                                                            <td>
-                                                                <div class="dropdown">
-                                                                    <a href="javascript:void(0);"
-                                                                        class="btn btn-light btn-icon"
-                                                                        id="dropdownMenuLink3" data-bs-toggle="dropdown"
-                                                                        aria-expanded="true">
-                                                                        <i class="ri-equalizer-fill"></i>
-                                                                    </a>
-                                                                    <ul class="dropdown-menu dropdown-menu-end"
-                                                                        aria-labelledby="dropdownMenuLink3">
-                                                                        <li><a class="dropdown-item"
-                                                                                href="javascript:void(0);"><i
-                                                                                    class="ri-eye-fill me-2 align-middle text-muted"></i>View</a>
-                                                                        </li>
-                                                                        <li><a class="dropdown-item"
-                                                                                href="javascript:void(0);"><i
-                                                                                    class="ri-download-2-fill me-2 align-middle text-muted"></i>Download</a>
-                                                                        </li>
-                                                                        <li class="dropdown-divider"></li>
-                                                                        <li><a class="dropdown-item"
-                                                                                href="javascript:void(0);"><i
-                                                                                    class="ri-delete-bin-5-line me-2 align-middle text-muted"></i>Delete</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <td>
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="avatar-sm">
-                                                                    <div
-                                                                        class="avatar-title bg-soft-success text-success rounded fs-20">
-                                                                        <i class="ri-file-excel-fill"></i>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="ms-3 flex-grow-1">
-                                                                    <h6 class="fs-15 mb-0"><a
-                                                                            href="javascript:void(0);">Account-statement.xsl</a>
-                                                                    </h6>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>XSL File</td>
-                                                        <td>2.38 KB</td>
-                                                        <td>14 Nov 2021</td>
-                                                        <td>
-                                                            <div class="dropdown">
-                                                                <a href="javascript:void(0);"
-                                                                    class="btn btn-light btn-icon"
-                                                                    id="dropdownMenuLink5" data-bs-toggle="dropdown"
-                                                                    aria-expanded="true">
-                                                                    <i class="ri-equalizer-fill"></i>
-                                                                </a>
-                                                                <ul class="dropdown-menu dropdown-menu-end"
-                                                                    aria-labelledby="dropdownMenuLink5">
-                                                                    <li><a class="dropdown-item"
-                                                                            href="javascript:void(0);"><i
-                                                                                class="ri-eye-fill me-2 align-middle text-muted"></i>View</a>
-                                                                    </li>
-                                                                    <li><a class="dropdown-item"
-                                                                            href="javascript:void(0);"><i
-                                                                                class="ri-download-2-fill me-2 align-middle text-muted"></i>Download</a>
-                                                                    </li>
-                                                                    <li class="dropdown-divider"></li>
-                                                                    <li><a class="dropdown-item"
-                                                                            href="javascript:void(0);"><i
-                                                                                class="ri-delete-bin-5-line me-2 align-middle text-muted"></i>Delete</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="avatar-sm">
-                                                                        <div
-                                                                            class="avatar-title bg-soft-info text-info rounded fs-20">
-                                                                            <i class="ri-folder-line"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="ms-3 flex-grow-1">
-                                                                        <h6 class="fs-15 mb-0"><a
-                                                                                href="javascript:void(0);">Project
-                                                                                Screenshots Collection</a></h6>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>Floder File</td>
-                                                            <td>87.24 MB</td>
-                                                            <td>08 Nov 2021</td>
-                                                            <td>
-                                                                <div class="dropdown">
-                                                                    <a href="javascript:void(0);"
-                                                                        class="btn btn-light btn-icon"
-                                                                        id="dropdownMenuLink6" data-bs-toggle="dropdown"
-                                                                        aria-expanded="true">
-                                                                        <i class="ri-equalizer-fill"></i>
-                                                                    </a>
-                                                                    <ul class="dropdown-menu dropdown-menu-end"
-                                                                        aria-labelledby="dropdownMenuLink6">
-                                                                        <li><a class="dropdown-item"
-                                                                                href="javascript:void(0);"><i
-                                                                                    class="ri-eye-fill me-2 align-middle"></i>View</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a class="dropdown-item"
-                                                                                href="javascript:void(0);"><i
-                                                                                    class="ri-download-2-fill me-2 align-middle"></i>Download</a>
-                                                                        </li>
-                                                                        <li><a class="dropdown-item"
-                                                                                href="javascript:void(0);"><i
-                                                                                    class="ri-delete-bin-5-line me-2 align-middle"></i>Delete</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="avatar-sm">
-                                                                        <div
-                                                                            class="avatar-title bg-soft-danger text-danger rounded fs-20">
-                                                                            <i class="ri-image-2-fill"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="ms-3 flex-grow-1">
-                                                                        <h6 class="fs-15 mb-0">
-                                                                            <a
-                                                                                href="javascript:void(0);">Velzon-logo.png</a>
-                                                                        </h6>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>PNG File</td>
-                                                            <td>879 KB</td>
-                                                            <td>02 Nov 2021</td>
-                                                            <td>
-                                                                <div class="dropdown">
-                                                                    <a href="javascript:void(0);"
-                                                                        class="btn btn-light btn-icon"
-                                                                        id="dropdownMenuLink7" data-bs-toggle="dropdown"
-                                                                        aria-expanded="true">
-                                                                        <i class="ri-equalizer-fill"></i>
-                                                                    </a>
-                                                                    <ul class="dropdown-menu dropdown-menu-end"
-                                                                        aria-labelledby="dropdownMenuLink7">
-                                                                        <li><a class="dropdown-item"
-                                                                                href="javascript:void(0);"><i
-                                                                                    class="ri-eye-fill me-2 align-middle"></i>View</a>
-                                                                        </li>
-                                                                        <li><a class="dropdown-item"
-                                                                                href="javascript:void(0);"><i
-                                                                                    class="ri-download-2-fill me-2 align-middle"></i>Download</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a class="dropdown-item"
-                                                                                href="javascript:void(0);"><i
-                                                                                    class="ri-delete-bin-5-line me-2 align-middle"></i>Delete</a>
                                                                         </li>
                                                                     </ul>
                                                                 </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\NoteControlleur;
 use App\Http\Controllers\OptionController;
 use App\Http\Controllers\PersonnelController;
 use App\Models\Faculte;
+use App\Models\Niveau;
 use Illuminate\Support\Facades\Route;
 
 
@@ -24,17 +25,27 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
 
     // Faculte::create([
-    //     "nom" => "Faculte des Sciences",
-    //     "description"=>
-    //     "La faculute des sciences vise ...."
+    //     "nom" => "MIT",
+    //     "description"=> "Ma description"
     // ]);
+
+    // Niveau::create([
+    //     "nom" => "Licence 3",
+    //     "description"=>
+    //     "La faculute des sciences vise ....",
+    //     "faculte_id" => 1
+    // ]);
+
+
+
     return view('index');
 })->name("home");
 
 Route::prefix('/etudiant')->name('etudiant.')->controller(EtudiantController::class)->group(
     function () {
     Route::get("/", 'index')->name("index");
-    Route::get("/profile", 'show')->name("show");
+    Route::post("/", 'recherche');
+    Route::get("/profile/{id}", 'show')->name("show");
     Route::get("/store", 'store')->name("store");
     Route::post("/store", 'create');
     }

@@ -15,14 +15,14 @@ return new class extends Migration
         Schema::create('carte_etudiants', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->unsignedBigInteger('etudiant');
-            $table->foreign('etudiant')->references('id')->on('etudiants')->onDelete('cascade');
-            $table->unsignedBigInteger('faculte');
-            $table->foreign('faculte')->references('id')->on('facultes')->onDelete('cascade');
-            $table->unsignedBigInteger('option');
-            $table->foreign('option')->references('id')->on('options')->onDelete('cascade');
-            $table->unsignedBigInteger('niveau');
-            $table->foreign('niveau')->references('id')->on('niveaux')->onDelete('cascade');
+            $table->unsignedBigInteger('etudiant_id');
+            $table->foreign('etudiant_id')->references('id')->on('etudiants')->onDelete('cascade');
+            $table->unsignedBigInteger('faculte_id');
+            $table->foreign('faculte_id')->references('id')->on('facultes')->onDelete('cascade');
+            $table->unsignedBigInteger('option_id');
+            $table->foreign('option_id')->references('id')->on('options')->onDelete('cascade');
+            $table->unsignedBigInteger('niveau_id');
+            $table->foreign('niveau_id')->references('id')->on('niveaux')->onDelete('cascade');
         });
     }
 

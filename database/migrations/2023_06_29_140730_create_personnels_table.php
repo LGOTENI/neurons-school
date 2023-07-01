@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('lieu_naissance');
             $table->string('matricule');
             $table->string('rang')->default(0);
-            $table->unsignedBigInteger('faculte');
-            $table->foreign('faculte')->references('id')->on('facultes')->onDelete('cascade');
+            $table->unsignedBigInteger('faculte_id');
+            $table->foreign('faculte_id')->references('id')->on('facultes')->onDelete('cascade');
             $table->longText('adresse')->nullable()->default(null);
             $table->string('email')->nullable();
             $table->string('telephone');

@@ -24,8 +24,8 @@ return new class extends Migration
             $table->longText('adresse')->nullable()->default(null);
             $table->string('email')->nullable();
             $table->string('telephone');
-            $table->unsignedBigInteger('faculte');
-            $table->foreign('faculte')->references('id')->on('facultes')->onDelete('cascade');
+            $table->unsignedBigInteger('faculte_id');
+            $table->foreign('faculte_id')->references('id')->on('facultes')->onDelete('cascade');
         });
     }
 

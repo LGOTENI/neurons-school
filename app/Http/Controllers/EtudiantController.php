@@ -5,23 +5,40 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Etudiant;
 use App\Models\Option;
+use App\Models\Niveau;
+use Illuminate\Support\Facades\File;
 
 
 class EtudiantController extends Controller
 {
     protected function index() {
-        // $options= Option::where('faculte', '=', 1)->get();
-        // $etudiants= Etudiant::where('faculte', '=', 1);
-        return view("pages.etudiants");
+        $options= Option::where('faculte_id', '=', 1)->get();
+        $niveaux= Niveau::all();
+        return view("pages.etudiants", compact("options","niveaux"));
     }
 
-    protected function show() {
-        return view("pages.etudiant-profil");
+    protected function show($id) {
+        $etudiant= Etudiant::find($id);
+        return view("pages.etudiant-profil", compact("etudiant"));
+    }
+
+    protected function recherche(Request $request) {
+        $options= Option::where('faculte_id', '=', 1)->get();
+        $niveaux= Niveau::all();
+        $etudiants= Etudiant::where('option_id','=', $request->option)->where('niveau_id','=', $request->niveau)->get();
+        
+        if ($etudiants->isEmpty()) {
+            return redirect()->route("etudiant.index")->with("success", "Aucune donnée n'a été trouvée");
+        } else {
+            return view("pages.etudiants", compact("etudiants","niveaux", "options"));
+        }
+        
     }
     
     protected function store() {
-        $options= Option::where('faculte', '=', 1)->get();
-        return view("pages.etudiant-inscription", compact('options'));
+        $options= Option::where('faculte_id', '=', 1)->get();
+        $niveaux= Niveau::all();
+        return view("pages.etudiant-inscription", compact('options','niveaux'));
     }
 
     protected function create(Request $request) {
@@ -56,8 +73,7 @@ class EtudiantController extends Controller
         // Utilisation de la fonction genererMatricule()
         $matricule = genererMatricule();
         $password= genererPassword();
-        $niveau=gettype(intval($request->niveau));
-        // dd(gettype(intval($request->niveau)));
+        // $niveau=gettype(intval($request->niveau));
         Etudiant::create(
             [
                 "nom" => $request->nom,
@@ -71,9 +87,9 @@ class EtudiantController extends Controller
                 "adresse" => $request->adresse,
                 "email" => $request->email,
                 "telephone" => $request->telephone,
-                'option' => $request->option,
-                'niveau' => $niveau,
-                'faculte' => 1,
+                'option_id' => $request->option,
+                'niveau_id' => $request->niveau,
+                'faculte_id' => 1,
             ]
         );
 

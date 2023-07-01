@@ -26,14 +26,14 @@ return new class extends Migration
             $table->longText('adresse')->nullable()->default(null);
             $table->string('email')->nullable();
             $table->string('telephone');
-            $table->unsignedBigInteger('faculte')->nullable();
-            $table->foreign('faculte')->references('id')->on('facultes')->onDelete('cascade');
-            $table->unsignedBigInteger('inscription')->nullable()->default(null);
-            $table->foreign('inscription')->references('id')->on('pre_inscriptions')->onDelete('cascade');
-            $table->unsignedBigInteger('option')->nullable();
-            $table->foreign('option')->references('id')->on('options')->onDelete('cascade');
-            $table->unsignedBigInteger('niveau')->nullable();
-            $table->foreign('niveau')->references('id')->on('niveaux')->onDelete('cascade');
+            $table->unsignedBigInteger('faculte_id')->nullable();
+            $table->foreign('faculte_id')->references('id')->on('facultes')->onDelete('cascade');
+            $table->unsignedBigInteger('pre_inscription_id')->nullable()->default(null);
+            $table->foreign('pre_inscription_id')->references('id')->on('pre_inscriptions')->onDelete('cascade');
+            $table->unsignedBigInteger('option_id')->nullable();
+            $table->foreign('option_id')->references('id')->on('options')->onDelete('cascade');
+            $table->unsignedBigInteger('niveau_id')->nullable();
+            $table->foreign('niveau_id')->references('id')->on('niveaux')->onDelete('cascade');
         });
     }
 

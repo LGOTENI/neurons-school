@@ -14,7 +14,6 @@
             </div>
 
         </div>
-
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
@@ -29,27 +28,23 @@
                         </div>
                     </div><!-- end card header -->
                     <div class="card-body">
-                        <form action="" class="row">
-                            <select class="form-select col-2 w-25 m-2" aria-label="Default select example">
+                        <form class="row" method="POST">
+                            @csrf
+                            <select class="form-select col-2 w-25 m-2" aria-label="Default select example" name="niveau">
                                 <option selected>Niveau</option>
-                                <option value="1">L1</option>
-                                <option value="2">L2</option>
-                                <option value="3">L3</option>
+                                @foreach ($niveaux as $niveau)
+                                    <option value="{{ $niveau->id }}">{{ $niveau->nom }}</option>
+                                @endforeach
                             </select>
-                            <select class="form-select col-2 w-25 m-2" aria-label="Default select example">
+                            <select class="form-select col-2 w-25 m-2" aria-label="Default select example" name="option">
                                 <option selected>Option</option>
-                                <option value="1">Genie informatique</option>
-                                <option value="2">Two....</option>
-                                <option value="3">Three.....</option>
+                                @foreach ($options as $option)
+                                    <option value="{{ $option->id }}">{{ $option->nom }}</option>
+                                @endforeach
                             </select>
                             <select class="form-select col-2 w-25 m-2" aria-label="Default select example">
-                                <option selected>Semestre</option>
-                                <option value="-----">semestre 1</option>
-                                <option value="-----">semestre 2</option>
-                                <option value="-----">semestre 3</option>
-                                <option value="-----">semestre 4</option>
-                                <option value="-----">semestre 5</option>
-                                <option value="-----">semestre 6</option>
+                                <option selected>Annee</option>
+                                <option value="-----">2023</option>
                             </select>
                             <button class="btn btn-primary col-2 m-2" type="submit">rechercher</button>
                         </form>
@@ -113,8 +108,7 @@
                                                     <th data-column-id="salary" class="gridjs-th gridjs-th-sort"
                                                         tabindex="0" style="width: 250px;">
                                                         <div class="gridjs-th-content">Options</div><button tabindex="-1"
-                                                            aria-label="Sort column ascending"
-                                                            title="Sort column ascending"
+                                                            aria-label="Sort column ascending" title="Sort column ascending"
                                                             class="gridjs-sort gridjs-sort-neutral"></button>
                                                     </th>
                                                     <th data-column-id="experience" class="gridjs-th gridjs-th-sort"
@@ -134,26 +128,34 @@
                                                 </tr>
                                             </thead>
                                             <tbody class="gridjs-tbody">
-                                                <tr class="gridjs-tr">
-                                                    <td data-column-id="position" class="gridjs-td">MO45TUY
-                                                    </td>
-                                                    <td data-column-id="companyName" class="gridjs-td">
-                                                        Christ Ngakosso</td>
-                                                    <td data-column-id="location" class="gridjs-td">L2
-                                                    </td>
-                                                    <td data-column-id="salary" class="gridjs-td">Genie
-                                                        Informatique (GI)
-                                                    </td>
-                                                    <td data-column-id="experience" class="gridjs-td">06 600
-                                                        22 33
-                                                    </td>
-                                                    <td data-column-id="jobType" class="gridjs-td">
-                                                        <button
-                                                            class="btn btn-primary w-100">
-                                                            <a href="{{ route("etudiant.show") }}">Plus...</a>
-                                                        </button>
-                                                    </td>
-                                                </tr>
+                                                @isset($etudiants)
+                                                    {{-- @else --}}
+                                                    @foreach ($etudiants as $etudiant)
+                                                        <tr class="gridjs-tr">
+                                                            <td data-column-id="position" class="gridjs-td">
+                                                                {{ $etudiant->matricule }}
+                                                            </td>
+                                                            <td data-column-id="companyName" class="gridjs-td">
+                                                                {{ $etudiant->nom }}</td>
+                                                            <td data-column-id="location" class="gridjs-td">
+                                                                {{ $etudiant->niveau->nom }}
+                                                            </td>
+                                                            <td data-column-id="salary" class="gridjs-td">
+                                                                {{ $etudiant->option->nom }}
+                                                            </td>
+                                                            <td data-column-id="experience" class="gridjs-td">
+                                                                {{ $etudiant->telephone }}
+                                                            <td data-column-id="jobType" class="gridjs-td">
+                                                                <a
+                                                                    href="{{ route('etudiant.show', ['id' => $etudiant->id]) }}">
+                                                                    <button class="btn btn-primary w-100">
+                                                                        Plus...
+                                                                    </button>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                @endisset
                                             </tbody>
                                         </table>
                                     </div>
