@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Etudiant;
 use App\Models\Option;
 use App\Models\Niveau;
+use App\Models\User;
 use Illuminate\Support\Facades\File;
 
 
@@ -19,7 +20,24 @@ class EtudiantController extends Controller
 
     protected function show($id) {
         $etudiant= Etudiant::find($id);
-        return view("pages.etudiant-profil", compact("etudiant"));
+        $user= User::where('etudiant_id', '=', $id)->get();
+        $verif= true;
+        if ($user->isEmpty()) {
+            $verif= false;
+        }
+        return view("pages.etudiant-profil", compact("etudiant","verif"));
+    }
+
+    protected function compte(Etudiant $etudiant){
+        User::create([
+            'name' => $etudiant->nom,
+            'statut' => $etudiant->statut,
+            'email' => $etudiant->matricule,
+            'etudiant_id' => $etudiant->id,
+            'password'=> $etudiant->password,
+        ]);
+        return redirect()->route("etudiant.show", ['id' =>  $etudiant->id])->with("success", "Le compte a été activé avec succes");
+
     }
 
     protected function recherche(Request $request) {
@@ -66,7 +84,7 @@ class EtudiantController extends Controller
             $documentPath=$documents->store('Documents', 'public');
         }
 
-        if($images!= null && !$images->getError()){
+        if($images != null && !$images->getError()){
             $imagePath=$images->store('Universite', 'public');
         }
 

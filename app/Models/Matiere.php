@@ -19,5 +19,10 @@ class Matiere extends Model
     {
         return $this->belongsTo(Option::class);
     }
+    
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
+    }
 
 }

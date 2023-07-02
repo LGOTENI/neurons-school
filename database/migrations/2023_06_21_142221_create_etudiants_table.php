@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('date_naissance');
             $table->string('nationalite');
             $table->string('lieu_naissance');
+            $table->string('statut')->default("etudiant");
             $table->string('matricule');
             $table->string('password');
             $table->string('documents')->nullable();
@@ -36,7 +37,6 @@ return new class extends Migration
             $table->foreign('niveau_id')->references('id')->on('niveaux')->onDelete('cascade');
         });
     }
-
     /**
      * Reverse the migrations.
      */

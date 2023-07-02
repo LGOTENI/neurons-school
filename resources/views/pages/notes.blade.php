@@ -27,27 +27,23 @@
                         </div>
                     </div><!-- end card header -->
                     <div class="card-body">
-                        <form action="" class="row">
-                            <select class="form-select col-2 w-25 m-2" aria-label="Default select example">
+                        <form class="row" method="POST">
+                            @csrf
+                            <select class="form-select col-2 w-25 m-2" aria-label="Default select example" name="niveau">
                                 <option selected>Niveau</option>
-                                <option value="1">L1</option>
-                                <option value="2">L2</option>
-                                <option value="3">L3</option>
+                                @foreach ($niveaux as $niveau)
+                                    <option value="{{ $niveau->id }}">{{ $niveau->nom }}</option>
+                                @endforeach
                             </select>
-                            <select class="form-select col-2 w-25 m-2" aria-label="Default select example">
+                            <select class="form-select col-2 w-25 m-2" aria-label="Default select example" name="option">
                                 <option selected>Option</option>
-                                <option value="1">Genie informatique</option>
-                                <option value="2">Two....</option>
-                                <option value="3">Three.....</option>
+                                @foreach ($options as $option)
+                                    <option value="{{ $option->id }}">{{ $option->nom }}</option>
+                                @endforeach
                             </select>
                             <select class="form-select col-2 w-25 m-2" aria-label="Default select example">
-                                <option selected>Semestre</option>
-                                <option value="-----">semestre 1</option>
-                                <option value="-----">semestre 2</option>
-                                <option value="-----">semestre 3</option>
-                                <option value="-----">semestre 4</option>
-                                <option value="-----">semestre 5</option>
-                                <option value="-----">semestre 6</option>
+                                <option selected>Annee</option>
+                                <option value="-----">2023</option>
                             </select>
                             <button class="btn btn-primary col-2 m-2" type="submit">rechercher</button>
                         </form>
@@ -58,18 +54,19 @@
         <!--end row-->
 
         <div class="row">
+            @isset($etudiants)
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
                         <div class="row g-4 align-items-center">
+
                             <div class="col-sm-auto">
                                 <div>
-                                    <h4 class="card-title mb-0 flex-grow-1">Registre des Notes Genie
-                                        Informatique L1 Semestre 1</h4>
+                                    {{-- <h4 class="card-title mb-0 flex-grow-1">Registre des Notes Genie
+                                        Informatique L1 Semestre 1</h4> --}}
                                     <div style="margin: 10px;">
-                                        <a href="update-note.html" class="btn btn-danger" type="button">Modifier</a>
+                                        <a href="{{ route("register-notes.show", ['option' => $params[0], 'niveau'=>$params[1]]) }}" class="btn btn-danger" type="button">Edition des notes</a>
                                     </div>
-
                                 </div>
                             </div>
 
@@ -84,6 +81,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="card-body">
                         <div id="recomended-jobs" class="table-card">
                             <div role="complementary" class="gridjs gridjs-container" style="width: 100%;">
@@ -97,131 +95,31 @@
                                                         aria-label="Sort column ascending" title="Sort column ascending"
                                                         class="gridjs-sort gridjs-sort-desc"></button>
                                                 </th>
+                                                @foreach ($matieres as $matiere )
                                                 <th data-column-id="companyName" class="gridjs-th gridjs-th-sort"
                                                     tabindex="0" style="width: 90px;">
-                                                    <div class="gridjs-th-content">Francais</div><button tabindex="-1"
+                                                    <div class="gridjs-th-content">{{$matiere->nom }}</div><button tabindex="-1"
                                                         aria-label="Sort column ascending" title="Sort column ascending"
                                                         class="gridjs-sort gridjs-sort-neutral"></button>
                                                 </th>
-                                                <th data-column-id="companyName" class="gridjs-th gridjs-th-sort"
-                                                    tabindex="0" style="width: 90px;">
-                                                    <div class="gridjs-th-content">Geographie</div><button tabindex="-1"
-                                                        aria-label="Sort column ascending" title="Sort column ascending"
-                                                        class="gridjs-sort gridjs-sort-neutral"></button>
-                                                </th>
-                                                <th data-column-id="companyName" class="gridjs-th gridjs-th-sort"
-                                                    tabindex="0" style="width: 90px;">
-                                                    <div class="gridjs-th-content">Histoire</div><button tabindex="-1"
-                                                        aria-label="Sort column ascending" title="Sort column ascending"
-                                                        class="gridjs-sort gridjs-sort-neutral"></button>
-                                                </th>
-                                                <th data-column-id="companyName" class="gridjs-th gridjs-th-sort"
-                                                    tabindex="0" style="width: 90px;">
-                                                    <div class="gridjs-th-content">Mathematique</div><button
-                                                        tabindex="-1" aria-label="Sort column ascending"
-                                                        title="Sort column ascending"
-                                                        class="gridjs-sort gridjs-sort-neutral"></button>
-                                                </th>
-                                                <th data-column-id="companyName" class="gridjs-th gridjs-th-sort"
-                                                    tabindex="0" style="width: 90px;">
-                                                    <div class="gridjs-th-content">SVT</div><button tabindex="-1"
-                                                        aria-label="Sort column ascending" title="Sort column ascending"
-                                                        class="gridjs-sort gridjs-sort-neutral"></button>
-                                                </th>
+                                                @endforeach
+
                                             </tr>
                                         </thead>
                                         <tbody class="gridjs-tbody">
+                                            @isset($etudiants)
+
+                                            @foreach ($notes as $note )
                                             <tr class="gridjs-tr">
-                                                <td data-column-id="position" class="gridjs-td">Christ
-                                                    Ngakosso</td>
-                                                <td data-column-id="companyName" class="gridjs-td">7</td>
-                                                <td data-column-id="location" class="gridjs-td">15
-                                                </td>
-                                                <td data-column-id="salary" class="gridjs-td">18
-                                                </td>
-                                                <td data-column-id="experience" class="gridjs-td">11
-                                                </td>
-                                                <td data-column-id="jobType" class="gridjs-td">8
-                                                </td>
+                                                <td data-column-id="position" class="gridjs-td">
+                                                    {{ $note->etudiant->nom }}</td>
+                                                    {{-- @foreach ($matieres as $matiere) --}}
+                                                    <td data-column-id="companyName" class="gridjs-td">{{ $note->valeur }}</td>
+                                                    {{-- @endforeach --}}
                                             </tr>
-                                            <tr class="gridjs-tr">
-                                                <td data-column-id="position" class="gridjs-td">Christ
-                                                    Ngakosso</td>
-                                                <td data-column-id="companyName" class="gridjs-td">7</td>
-                                                <td data-column-id="location" class="gridjs-td">15
-                                                </td>
-                                                <td data-column-id="salary" class="gridjs-td">18
-                                                </td>
-                                                <td data-column-id="experience" class="gridjs-td">11
-                                                </td>
-                                                <td data-column-id="jobType" class="gridjs-td">8
-                                                </td>
-                                            </tr>
-                                            <tr class="gridjs-tr">
-                                                <td data-column-id="position" class="gridjs-td">Christ
-                                                    Ngakosso</td>
-                                                <td data-column-id="companyName" class="gridjs-td">7</td>
-                                                <td data-column-id="location" class="gridjs-td">15
-                                                </td>
-                                                <td data-column-id="salary" class="gridjs-td">18
-                                                </td>
-                                                <td data-column-id="experience" class="gridjs-td">11
-                                                </td>
-                                                <td data-column-id="jobType" class="gridjs-td">8
-                                                </td>
-                                            </tr>
-                                            <tr class="gridjs-tr">
-                                                <td data-column-id="position" class="gridjs-td">Christ
-                                                    Ngakosso</td>
-                                                <td data-column-id="companyName" class="gridjs-td">7</td>
-                                                <td data-column-id="location" class="gridjs-td">15
-                                                </td>
-                                                <td data-column-id="salary" class="gridjs-td">18
-                                                </td>
-                                                <td data-column-id="experience" class="gridjs-td">11
-                                                </td>
-                                                <td data-column-id="jobType" class="gridjs-td">8
-                                                </td>
-                                            </tr>
-                                            <tr class="gridjs-tr">
-                                                <td data-column-id="position" class="gridjs-td">Christ
-                                                    Ngakosso</td>
-                                                <td data-column-id="companyName" class="gridjs-td">7</td>
-                                                <td data-column-id="location" class="gridjs-td">15
-                                                </td>
-                                                <td data-column-id="salary" class="gridjs-td">18
-                                                </td>
-                                                <td data-column-id="experience" class="gridjs-td">11
-                                                </td>
-                                                <td data-column-id="jobType" class="gridjs-td">8
-                                                </td>
-                                            </tr>
-                                            <tr class="gridjs-tr">
-                                                <td data-column-id="position" class="gridjs-td">Christ
-                                                    Ngakosso</td>
-                                                <td data-column-id="companyName" class="gridjs-td">7</td>
-                                                <td data-column-id="location" class="gridjs-td">15
-                                                </td>
-                                                <td data-column-id="salary" class="gridjs-td">18
-                                                </td>
-                                                <td data-column-id="experience" class="gridjs-td">11
-                                                </td>
-                                                <td data-column-id="jobType" class="gridjs-td">8
-                                                </td>
-                                            </tr>
-                                            <tr class="gridjs-tr">
-                                                <td data-column-id="position" class="gridjs-td">Christ
-                                                    Ngakosso</td>
-                                                <td data-column-id="companyName" class="gridjs-td">7</td>
-                                                <td data-column-id="location" class="gridjs-td">15
-                                                </td>
-                                                <td data-column-id="salary" class="gridjs-td">18
-                                                </td>
-                                                <td data-column-id="experience" class="gridjs-td">11
-                                                </td>
-                                                <td data-column-id="jobType" class="gridjs-td">8
-                                                </td>
-                                            </tr>
+                                            @endforeach
+                                            @endisset
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -245,8 +143,10 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
+            @endisset
             <!--end col-->
         </div>
     </div>

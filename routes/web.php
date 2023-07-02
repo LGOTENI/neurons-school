@@ -5,6 +5,8 @@ use App\Http\Controllers\MatiereController;
 use App\Http\Controllers\NoteControlleur;
 use App\Http\Controllers\OptionController;
 use App\Http\Controllers\PersonnelController;
+use App\Http\Controllers\ExamenController;
+use App\Http\Controllers\AgendaController;
 use App\Models\Faculte;
 use App\Models\Niveau;
 use Illuminate\Support\Facades\Route;
@@ -48,18 +50,27 @@ Route::prefix('/etudiant')->name('etudiant.')->controller(EtudiantController::cl
     Route::get("/profile/{id}", 'show')->name("show");
     Route::get("/store", 'store')->name("store");
     Route::post("/store", 'create');
+    Route::get("/active/{etudiant}", 'compte')->name('compte.active');
     }
 );
 
-Route::prefix('/emploie-temps')->name('emploie-temps.')->controller(Emplo::class)->group(
+Route::prefix('/emploie-temps')->name('emploie-temps.')->controller(AgendaController::class)->group(
     function () {
     Route::get("/", 'index')->name("index");
+    }
+);
+
+Route::prefix('/examens')->name('examens.')->controller(ExamenController::class)->group(
+    function () {
+    Route::get("/", 'index')->name("index");
+    Route::post("/", 'create');
     }
 );
 
 Route::prefix('/personnels')->name('personnels.')->controller(PersonnelController::class)->group(
     function () {
     Route::get("/enseignants", 'enseignantsListe')->name("enseignants.index");
+    Route::post("/enseignants", 'enseignantsCreate');
     }
 );
 
@@ -83,5 +94,11 @@ Route::prefix('/matieres')->name('matieres.')->controller(MatiereController::cla
 Route::prefix('/register-notes')->name('register-notes.')->controller(NoteControlleur::class)->group(
     function () {
     Route::get("/", 'index')->name("index");
+    Route::post("/", 'recherche');
+    Route::get("/create/{option}/{niveau}", 'show')->name("show");
     }
 );
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

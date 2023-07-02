@@ -18,7 +18,7 @@
                 <div class="col">
                     <div class="p-2">
                         <h3 class="text-white mb-1">{{ $etudiant->nom }}</h3>
-                        <p class="text-white-75">Etudiant(e) Genie Informatique</p>
+                        <p class="text-white-75">{{ $etudiant->option->nom }}</p>
                         <div class="hstack text-white-50 gap-1">
                             <div class="me-2 text-danger">
                                 <i class="ri-user-line me-1 text-white-75 fs-16 align-middle"></i>{{ $etudiant->matricule }}
@@ -36,7 +36,11 @@
             </div>
             <!--end row-->
         </div>
-
+        @if (session('success'))
+            <div class="bg-success p-2 text-white">
+                {{ session('success') }}
+            </div>
+        @endif
         <div class="row">
             <div class="col-lg-12">
                 <div>
@@ -66,10 +70,19 @@
                             <a href="pages-profile-settings.html" class="btn btn-success"><i
                                     class="ri-edit-box-line align-bottom"></i> Edit Profile</a>
                         </div>
-                        <div class="flex-shrink-0 mx-2">
-                            <a href="pages-profile-settings.html" class="btn btn-warning"><i
-                                    class="ri-account-box-line align-bottom"></i> Activer compte</a>
-                        </div>
+                        @if (!$verif)
+                            <div class="flex-shrink-0 mx-2">
+                                <a href="{{ route('etudiant.compte.active', ['etudiant' => $etudiant->id]) }}"
+                                    class="btn btn-warning"><i class="ri-account-box-line align-bottom"></i> Activer
+                                    compte</a>
+                            </div>
+                        @else
+                            <div class="flex-shrink-0 mx-2">
+                                <a href="{{ route('etudiant.compte.active', ['etudiant' => $etudiant->id]) }}"
+                                    class="btn btn-danger"><i class="ri-account-box-line align-bottom"></i> Desactiver
+                                    compte</a>
+                            </div>
+                        @endif
                     </div>
                     <!-- Tab panes -->
                     <div class="tab-content pt-4 text-muted">
@@ -1054,7 +1067,8 @@
                                                             </td>
                                                         </tr>
                                                         <tr class="gridjs-tr">
-                                                            <td data-column-id="position" class="gridjs-td">Session 1</td>
+                                                            <td data-column-id="position" class="gridjs-td">Session 1
+                                                            </td>
                                                             <td data-column-id="companyName" class="gridjs-td">7</td>
                                                             <td data-column-id="location" class="gridjs-td">15
                                                             </td>
@@ -1141,7 +1155,9 @@
                                                                     <div class="ms-3 flex-grow-1">
                                                                         <h6 class="fs-15 mb-0">
                                                                             <div class="avatar-sm">
-                                                                                <img src="/storage/{{ $etudiant->documents }}" alt="Doc" class="img-thumbnail" />
+                                                                                <img src="/storage/{{ $etudiant->documents }}"
+                                                                                    alt="Doc"
+                                                                                    class="img-thumbnail" />
                                                                             </div>
                                                                         </h6>
                                                                     </div>

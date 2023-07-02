@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('title', 'Enseignant')
+@section('title', 'Liste matieres')
 @section('content')
     <div class="container-fluid">
 
@@ -7,7 +7,8 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-xm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0">ENSEIGNANT</h4>
+                    <h4 class="mb-sm-0">layout</h4>
+
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">Anna</a></li>
@@ -30,159 +31,59 @@
                 <div class="card">
                     <div class="card-header align-items-center d-flex">
                         <div class="flex-shrink-0">
-                            <h5 class="text-center mx-auto">Ajouter un enseignant</h5>
+                            <h5>Ajouter un Examem</h5>
                         </div>
                     </div><!-- end card header -->
                     <div class="card-body">
-                        <form method="post" enctype="multipart/form-data">
+                        <form method="post">
                             @csrf
-                            <div class="card-body p-2">
-                                <div class="card mt-n5">
-                                    <div class="card-body p-4">
-                                        <div class="text-center">
-                                            <div class="text-center mt-2">
-                                                <h5 class="text-primary text-center">Ajouter une photo</h5>
-                                            </div>
-                                            <div class="profile-user position-relative d-inline-block mx-auto  mb-4">
-                                                <img id="image-preview"
-                                                    src="{{ asset('assets/images/users/user-dummy-img.jpg') }}"
-                                                    class="rounded-circle avatar-xl img-thumbnail user-profile-image"
-                                                    alt="user-profile-image">
-                                                <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
-                                                    <input id="profile-img-file-input" type="file"
-                                                        class="profile-img-file-input" name="photo">
-                                                    <label for="profile-img-file-input" class="profile-photo-edit avatar-xs">
-                                                        <span class="avatar-title rounded-circle bg-light text-body">
-                                                            <i class="ri-camera-fill"></i>
-                                                        </span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <h5 class="fs-16 mb-1">Photo D'Identite</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="p-2 mt-4">
-                                    <form class="needs-validation" novalidate="" method="POST">
-                                        <div class="mb-3">
-                                            <label for="nom" class="form-label">Statut<span
-                                                    class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="nom" 
-                                                name="statut" required="" value="enseignant" disabled>
-                                            <div class="invalid-feedback">
-                                                Please your full name
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="nom" class="form-label">Nom Complet <span
-                                                    class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="nom" placeholder="Nom complet"
-                                                name="nom" required="">
-                                            <div class="invalid-feedback">
-                                                Please your full name
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="useremail" class="form-label">Email <span
-                                                    class="text-danger">*</span></label>
-                                            <input type="email" class="form-control" id="useremail"
-                                                placeholder="Enter email address" required="" name="email">
-                                            <div class="invalid-feedback">
-                                                Please enter email
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="userphone" class="form-label">Telephone <span
-                                                    class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="userphone" placeholder="Enter phone"
-                                                required="" name="telephone">
-                                            <div class="invalid-feedback">
-                                                Please enter phone
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="userphone" class="form-label">Adresse <span
-                                                    class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="userphone" placeholder="Enter Adress"
-                                                required="" name="adresse">
-                                            <div class="invalid-feedback">
-                                                Please enter Adress
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="nationalite" class="form-label">Nationalite <span
-                                                    class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="nationalite"
-                                                placeholder="Enter your nationality" required="" name="nationalite">
-                                            <div class="invalid-feedback">
-                                                Please enter nationality
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="userphone" class="form-label">Date de Naissance <span
-                                                    class="text-danger">*</span></label>
-                                            <input type="date" class="form-control" id="userphone" placeholder="Enter phone"
-                                                required="" name="date_naissance">
-                                            <div class="invalid-feedback">
-                                                Please enter date
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="userphone" class="form-label">Lieu de naissance <span
-                                                    class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="userphone"
-                                                placeholder="Lieu de naissance" required="" name="lieu_naissance">
-                                            <div class="invalid-feedback">
-                                                Please enter phone
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="userphone" class="form-label">Niveau <span
-                                                    class="text-danger">*</span></label>
-                                            <select class="form-select" aria-label="Default select example" name="niveau">
-                                                @foreach ($niveaux as $niveau)
-                                                    <option value="{{ $niveau->id }}">{{ $niveau->nom }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-    
-                                        <div class="mb-3">
-                                            <label for="userphone" class="form-label">Filiere <span
-                                                    class="text-danger">*</span></label>
-                                            <select class="form-select" aria-label="Default select example" name="option">
-                                                @foreach ($options as $option)
-                                                    <option value="{{ $option->id }}">{{ $option->nom }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="userphone" class="form-label">Matiere <span
-                                                    class="text-danger">*</span></label>
-                                            <select class="form-select" aria-label="Default select example" name="matiere">
-                                                @foreach ($matieres as $matiere)
-                                                    <option value="{{ $matiere->id }}">{{ $matiere->nom }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="mb-3">
-    
-                                            <div>
-                                                <label for="formFileMultiple" class="form-label">Documents</label>
-                                                <input class="form-control" type="file" id="formFileMultiple" multiple
-                                                    name="documents">
-                                            </div>
-    
-                                            <div class="invalid-feedback">
-                                                Please enter document
-                                            </div>
-                                        </div>
-                                        <div class="mt-4">
-                                            <button class="btn btn-success w-100" type="submit">Inscrire</button>
-                                        </div>
-                                    </form>
-    
-                                </div>
+                            <div>
+                                <label for="basiInput">Type examen</label>
+                                <select class="form-select mb-2" id="basiInput" name="nom">
+                                    <option value="session">Session
+                                    </option>
+                                    <option value="devoir">Devoir
+                                    </option>
+                                </select>
                             </div>
+                            <div>
+                                <label for="selectInput">Semestre</label>
+                                <select class="form-select mb-2" id="selectInput" name="semestre">
+                                    <option value="1">Semestre 1
+                                    </option>
+                                    <option value="2">Semestre 2
+                                    </option>
+                                    <option value="3">Semestre 3
+                                    </option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="annee">Date de l'examen</label>
+                                <input type="date" name="annee" id="annee" class="form-control">
+                            </div>
+                            <div>
+                                <label for="selectInput">Filiere</label>
+                                <select class="form-select mb-2" id="selectInput" name="option">
+                                    @foreach ($options as $option)
+                                        <option value="{{ $option->id }}"> {{ $option->nom }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div>
+                                <label for="selectInput">Matiere</label>
+                                <select class="form-select mb-2" id="selectInput" name="matiere">
+                                    @foreach ($matieres as $matiere)
+                                        <option value="{{ $matiere->id }}">{{ $matiere->nom }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div>
+                                <label for="basiInput">Description</label>
+                                <textarea class="form-control mb-2" id="" cols="30" rows="10" name="description"></textarea>
+                            </div>
+                            <button class="btn btn-primary mb-2 " type="submit">Ajouter</button>
                         </form>
                     </div>
                 </div>
@@ -214,19 +115,19 @@
                                                 </th>
                                                 <th data-column-id="name" class="gridjs-th gridjs-th-sort" tabindex="0"
                                                     style="width: 150px;">
-                                                    <div class="gridjs-th-content">Telephone</div><button tabindex="-1"
+                                                    <div class="gridjs-th-content">Semestre</div><button tabindex="-1"
                                                         aria-label="Sort column ascending" title="Sort column ascending"
                                                         class="gridjs-sort gridjs-sort-neutral"></button>
                                                 </th>
                                                 <th data-column-id="position" class="gridjs-th gridjs-th-sort"
                                                     tabindex="0" style="width: 250px;">
-                                                    <div class="gridjs-th-content">Nationalite</div><button tabindex="-1"
+                                                    <div class="gridjs-th-content">Description</div><button tabindex="-1"
                                                         aria-label="Sort column ascending" title="Sort column ascending"
                                                         class="gridjs-sort gridjs-sort-neutral"></button>
                                                 </th>
                                                 <th data-column-id="position" class="gridjs-th gridjs-th-sort"
                                                     tabindex="0" style="width: 250px;">
-                                                    <div class="gridjs-th-content">Adresse</div><button tabindex="-1"
+                                                    <div class="gridjs-th-content">Date de l'examen</div><button tabindex="-1"
                                                         aria-label="Sort column ascending" title="Sort column ascending"
                                                         class="gridjs-sort gridjs-sort-neutral"></button>
                                                 </th>
@@ -240,16 +141,16 @@
                                             </tr>
                                         </thead>
                                         <tbody class="gridjs-tbody">
-                                            @foreach ($enseignants as $enseignant)
+                                            @foreach ($examens as $examen)
                                                 <tr class="gridjs-tr">
-                                                    <td data-column-id="name" class="gridjs-td">{{ $enseignant->nom }}</td>
+                                                    <td data-column-id="name" class="gridjs-td">{{ $examen->nom }}</td>
                                                     <td data-column-id="text" class="gridjs-td"><span><a
-                                                                href="">{{ $enseignant->telephone }}</a></span></td>
+                                                                href="">{{ $examen->semestre }}</a></span></td>
                                                     <td data-column-id="email" class="gridjs-td"><span><a
-                                                                href="">{{ $enseignant->nationalite }}</a></span>
+                                                                href="">{{ $examen->description }}</a></span>
                                                     </td>
                                                     <td data-column-id="email" class="gridjs-td"><span><a
-                                                        href="">{{ $enseignant->adresse }}</a></span>
+                                                        href="">{{ $examen->annee }}</a></span>
                                             </td>
                                                     <td data-column-id="position" class="gridjs-td">
                                                         <a href="#popup3" class=" m-1 btn btn-primary w-100"> <i

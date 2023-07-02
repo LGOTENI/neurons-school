@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="UDSN" name="description" />
     <meta content="Themesbrand" name="author" />
+    
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/images/logo-sm.png') }}">
 
@@ -686,7 +687,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="l-etudiant.html">
+                            <a class="nav-link " href="{{ route('emploie-temps.index') }}">
                                 <i class="ri-calendar-todo-fill"></i> <span>Emploie du Temps</span>
                             </a>
                         </li>
@@ -705,10 +706,9 @@
                                 <i class="ri-book-mark-fill"></i> <span>Matieres</span>
                             </a>
                         </li>
-                        <li class="menu-title"><i class="ri-more-fill"></i> <span
-                                data-key="t-components">Examens</span></li>
+                        <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-components">Examens</span></li>
                         <li class="nav-item">
-                            <a class="nav-link " href="layout.html">
+                            <a class="nav-link " href="{{ route("examens.index") }}">
                                 <i class=" ri-list-check-2"></i> <span>Liste des Examens
                                 </span>
                             </a>
@@ -772,11 +772,11 @@
                                     document.write(new Date().getFullYear())
                                 </script> © Neurons
                             </div>
-                            <div class="col-sm-6">
+                            {{-- <div class="col-sm-6">
                                 <div class="text-sm-end d-none d-sm-block">
                                     Design by Christ Ngakosso &
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </footer>

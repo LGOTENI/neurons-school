@@ -10,7 +10,7 @@ use App\Models\Faculte;
 class MatiereController extends Controller
 {
     protected function index() {
-        $options= Option::where("id", "=", 1)->get();
+        $options= Option::all();
         // $option= Matiere::find(1);
         $matieres= Matiere::where('faculte_id', '=', 1)->get();
         // dd($matieres->option);
